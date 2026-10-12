@@ -1,0 +1,27 @@
+from itertools import permutations
+
+def cryptarithmetic():
+    letters = 'SENDMORY'
+    digits = '0123456789'
+
+    for perm in permutations(digits, len(letters)):
+        d = dict(zip(letters, perm))
+
+        # Numbers must not start with zero
+        if d['S'] == '0' or d['M'] == '0':
+            continue
+
+        SEND = int(''.join(d[x] for x in 'SEND'))
+        MORE = int(''.join(d[x] for x in 'MORE'))
+        MONEY = int(''.join(d[x] for x in 'MONEY'))
+
+        if SEND + MORE == MONEY:
+            print("SEND =", SEND)
+            print("MORE =", MORE)
+            print("MONEY =", MONEY)
+            print("Solution found!")
+            return
+
+    print("No solution found")
+
+cryptarithmetic()
